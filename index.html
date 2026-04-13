@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FX3 Color Management Guide — DWG vs LogC4</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/trig-js/src/trig.min.js"></script>
+</head>
+<body>
+  <div class="doc-nav-shell">
+    <nav class="doc-nav" aria-label="Documentation sections">
+      <div class="doc-nav-brand">
+        <span class="doc-nav-dot"></span>
+        <span class="doc-nav-title">FX3 Color Management Guide</span>
+      </div>
+
+      <div class="doc-nav-links">
+        <a class="doc-nav-link active" data-tone="neutral" href="#overview">Overview</a>
+        <a class="doc-nav-link" data-tone="dwg" href="#dwg">DWG</a>
+        <a class="doc-nav-link" data-tone="logc" href="#logc4">LogC4</a>
+        <a class="doc-nav-link" data-tone="neutral" href="#differences">Differences</a>
+        <a class="doc-nav-link" data-tone="neutral" href="#consider">Consider</a>
+        <a class="doc-nav-link" data-tone="neutral" href="#nodes">Nodes</a>
+        <a class="doc-nav-link" data-tone="neutral" href="#rules">Rules</a>
+      </div>
+    </nav>
+  </div>
+
+  <main class="page">
+    <section id="overview" class="grid-14 hero anchor-section reveal" data-trig>
+      <div class="hero-main">
+        <div class="hero-panel">
+          <div class="eyebrow">FX3 Color Management</div>
+          <h1>Two workflows. One clear decision.</h1>
+          <p class="hero-copy">
+            A simple operational guide for grading Sony FX3 footage in DaVinci Resolve.
+            <strong>DWG Sandwich</strong> is the default path.
+            <strong>ARRI Clone / LogC4</strong> is the intentional alternate when you want the grade to live inside ARRI-style color science.
+          </p>
+
+          <div class="hero-tags">
+            <div class="tagline">Fast decision guide</div>
+            <div class="tagline">Premium documentation UI</div>
+            <div class="tagline">Scroll-enhanced</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <div class="side-card">
+          <div class="eyebrow eyebrow-muted">At a glance</div>
+          <div class="side-number">A/B</div>
+          <p>Both workflows are valid. The difference is not complexity — it is color science, tool behavior, and intent.</p>
+
+          <div class="side-list">
+            <div>DWG is the safe default for most FX3 work.</div>
+            <div>LogC4 is the specific choice for ARRI-style behavior.</div>
+            <div>The node discipline stays consistent across both.</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="dwg" class="grid-14 workflow-shell dwg anchor-section reveal" data-trig>
+      <div class="workflow-left">
+        <div class="workflow-panel">
+          <div class="eyebrow eyebrow-dwg">Workflow A</div>
+          <h2>DWG Sandwich</h2>
+          <p class="workflow-summary">
+            The default FX3 workflow. Convert Sony log into
+            <strong>DaVinci Wide Gamut / Intermediate</strong>, grade there, then map to
+            <strong>Rec.709</strong> at the output.
+          </p>
+
+          <div class="workflow-chip-row">
+            <div class="workflow-chip dwg">Default workflow</div>
+            <div class="workflow-chip dwg">Resolve-native</div>
+            <div class="workflow-chip dwg">Fast and dependable</div>
+          </div>
+
+          <div class="mini-grid">
+            <div class="mini">
+              <div class="eyebrow eyebrow-muted">Best for</div>
+              <p>Interviews, events, branded content, documentary, and solo FX3 delivery.</p>
+            </div>
+
+            <div class="mini">
+              <div class="eyebrow eyebrow-muted">Grade lives in</div>
+              <p>DaVinci Wide Gamut / Intermediate.</p>
+            </div>
+
+            <div class="mini">
+              <div class="eyebrow eyebrow-muted">Tool behavior</div>
+              <p>Primaries and HDR tools both behave naturally.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="workflow-right">
+        <div class="settings">
+          <div class="eyebrow eyebrow-dwg">Quick setup</div>
+          <h2>What matters most</h2>
+
+          <dl class="settings-list">
+            <div class="setting"><dt>Node 01</dt><dd><strong>CST</strong> from Sony S-Gamut3.Cine / S-Log3 to DWG / Intermediate.</dd></div>
+            <div class="setting"><dt>Timeline</dt><dd><strong>DaVinci Wide Gamut / Intermediate</strong>.</dd></div>
+            <div class="setting"><dt>Output</dt><dd><strong>DWG → Rec.709</strong> in the final CST.</dd></div>
+            <div class="setting"><dt>Max input nits</dt><dd><strong>1000</strong> on the Output CST.</dd></div>
+            <div class="setting"><dt>Use this when</dt><dd>You want the cleanest and safest FX3 default.</dd></div>
+          </dl>
+        </div>
+      </aside>
+    </section>
+
+    <section id="logc4" class="grid-14 workflow-shell logc anchor-section reveal" data-trig>
+      <div class="workflow-left">
+        <div class="workflow-panel">
+          <div class="eyebrow eyebrow-logc">Workflow B</div>
+          <h2>ARRI Clone / LogC4</h2>
+          <p class="workflow-summary">
+            The intentional alternate workflow. Use
+            <strong>ColorClone</strong> to move the FX3 image into
+            <strong>ARRI Wide Gamut 4 / LogC4</strong>, then grade inside ARRI-style color science.
+          </p>
+
+          <div class="workflow-chip-row">
+            <div class="workflow-chip logc">Alternate workflow</div>
+            <div class="workflow-chip logc">ARRI-style math</div>
+            <div class="workflow-chip logc">Specific creative choice</div>
+          </div>
+
+          <div class="mini-grid">
+            <div class="mini">
+              <div class="eyebrow eyebrow-muted">Best for</div>
+              <p>Narrative, music videos, premium brand films, and Alexa intercutting.</p>
+            </div>
+
+            <div class="mini">
+              <div class="eyebrow eyebrow-muted">Grade lives in</div>
+              <p>ARRI Wide Gamut 4 / LogC4.</p>
+            </div>
+
+            <div class="mini">
+              <div class="eyebrow eyebrow-muted">Tool behavior</div>
+              <p>Use HDR Wheels for tonal work. Do not rely on Lift / Gamma / Gain.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="workflow-right">
+        <div class="settings">
+          <div class="eyebrow eyebrow-logc">Quick setup</div>
+          <h2>What matters most</h2>
+
+          <dl class="settings-list">
+            <div class="setting"><dt>Node 01</dt><dd><strong>ColorClone</strong> directly to ARRI WG4 / LogC4.</dd></div>
+            <div class="setting"><dt>Before Node 01</dt><dd><strong>No CST</strong> before ColorClone.</dd></div>
+            <div class="setting"><dt>Timeline</dt><dd><strong>ARRI Wide Gamut 4 / LogC4</strong>.</dd></div>
+            <div class="setting"><dt>Output</dt><dd><strong>LogC4 → Rec.709</strong> in the final CST.</dd></div>
+            <div class="setting"><dt>Max input nits</dt><dd><strong>10000</strong> on the Output CST.</dd></div>
+          </dl>
+        </div>
+      </aside>
+    </section>
+
+    <section id="differences" class="grid-14 compare section-card anchor-section reveal" data-trig>
+      <div class="compare-a">
+        <div class="eyebrow eyebrow-muted">Key differences</div>
+        <h2>What actually changes?</h2>
+
+        <div class="compare-row">
+          <div class="compare-label">Intent</div>
+          <div class="compare-copy"><strong>DWG:</strong> neutral, safe default.<br><strong>LogC4:</strong> specific ARRI-style alternate.</div>
+        </div>
+
+        <div class="compare-row">
+          <div class="compare-label">Input</div>
+          <div class="compare-copy"><strong>DWG:</strong> CST into DWG.<br><strong>LogC4:</strong> ColorClone into ARRI WG4 / LogC4.</div>
+        </div>
+
+        <div class="compare-row">
+          <div class="compare-label">Working space</div>
+          <div class="compare-copy"><strong>DWG:</strong> DaVinci Wide Gamut / Intermediate.<br><strong>LogC4:</strong> ARRI Wide Gamut 4 / LogC4.</div>
+        </div>
+      </div>
+
+      <div class="compare-b">
+        <div class="eyebrow eyebrow-muted">Tool response</div>
+        <h2>How the grade behaves</h2>
+
+        <div class="compare-row">
+          <div class="compare-label">DWG</div>
+          <div class="compare-copy">Primaries and HDR tools both behave predictably.</div>
+        </div>
+
+        <div class="compare-row">
+          <div class="compare-label">LogC4</div>
+          <div class="compare-copy">HDR Wheels are the correct tonal tool. Lift / Gamma / Gain do not map as cleanly.</div>
+        </div>
+      </div>
+
+      <div class="compare-c">
+        <div class="eyebrow eyebrow-muted">Output</div>
+        <h2>Final handoff</h2>
+
+        <div class="compare-row">
+          <div class="compare-label">DWG</div>
+          <div class="compare-copy">Output CST uses <strong>1000</strong> max input nits.</div>
+        </div>
+
+        <div class="compare-row">
+          <div class="compare-label">LogC4</div>
+          <div class="compare-copy">Output CST uses <strong>10000</strong> max input nits.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="consider" class="anchor-section reveal" data-trig>
+      <div class="eyebrow eyebrow-muted">Important to consider</div>
+      <h2>Keep these rules simple and strict.</h2>
+
+      <div class="important-grid">
+        <article class="important-card">
+          <h4>DWG is the default</h4>
+          <p>Use Workflow A unless you specifically want the grade to live inside ARRI-style color science.</p>
+        </article>
+
+        <article class="important-card">
+          <h4>No CST before ColorClone</h4>
+          <p>Workflow B starts with ColorClone. Adding a CST before it is unnecessary and weakens the logic of the chain.</p>
+        </article>
+
+        <article class="important-card">
+          <h4>LogC4 needs 10000 nits</h4>
+          <p>The LogC4 output CST should use <strong>Max Input Nits 10000</strong>, not 1000.</p>
+        </article>
+
+        <article class="important-card">
+          <h4>Measure late, correct early</h4>
+          <p>Broadcast Safe and measurement happen after the Output CST. Read late, but make corrections earlier in the chain.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="nodes" class="anchor-section reveal" data-trig>
+      <div class="eyebrow eyebrow-muted">Node layout</div>
+      <h2>One structure. Two workflow states.</h2>
+      <p class="workflow-summary" style="max-width: 60ch; margin-bottom: 20px;">
+        The architecture stays the same. Switch between <strong>DWG Sandwich</strong> and
+        <strong>ARRI Clone / LogC4</strong> to see what changes in the node board.
+      </p>
+
+      <div class="toolbar">
+        <div class="toggle-group workflow-toggle" role="tablist" aria-label="Workflow switcher">
+          <button class="toggle-btn active" data-workflow="dwg" role="tab" aria-selected="true">DWG Sandwich</button>
+          <button class="toggle-btn" data-workflow="logc" role="tab" aria-selected="false">ARRI Clone / LogC4</button>
+        </div>
+
+        <div class="toggle-group theme-toggle" role="tablist" aria-label="Theme switcher">
+          <button class="toggle-btn active" data-theme-target="dark" role="tab" aria-selected="true">Dark</button>
+          <button class="toggle-btn" data-theme-target="light" role="tab" aria-selected="false">Light</button>
+        </div>
+      </div>
+
+      <section class="board dwg" id="board">
+        <div class="board-col">
+          <div class="group-head">
+            <h3>Pre-Clip</h3>
+            <p id="preclipDesc">Infrastructure before the clip-level grade.</p>
+          </div>
+
+          <article class="node emphasis">
+            <div class="node-top">
+              <div class="node-badge">Node 01</div>
+              <div class="node-kind" id="node01Kind">Input</div>
+            </div>
+            <h4 id="node01Title">Input CST</h4>
+            <p id="node01Purpose">Normalize FX3 footage into DWG / Intermediate.</p>
+            <div class="node-note" id="node01Note">Sony S-Gamut3.Cine / S-Log3 → DWG / Intermediate.</div>
+          </article>
+
+          <article class="node">
+            <div class="node-top">
+              <div class="node-badge">Node 02</div>
+              <div class="node-kind">Technical</div>
+            </div>
+            <h4>Noise Reduction</h4>
+            <p id="node02Purpose">Clean the signal before contrast amplification.</p>
+            <div class="node-note" id="node02Note">Usually subtle or bypassed at clean base ISOs.</div>
+          </article>
+        </div>
+
+        <div class="board-col">
+          <div class="group-head">
+            <h3>Clip</h3>
+            <p id="clipDesc">Per-shot grading zone. Balance first, then style.</p>
+          </div>
+
+          <div class="clip-grid">
+            <article class="node">
+              <div class="node-top">
+                <div class="node-badge">Node 03</div>
+                <div class="node-kind">Grade</div>
+              </div>
+              <h4>Exposure</h4>
+              <p id="node03Purpose">Set overall luminance and place the shot correctly.</p>
+              <div class="node-note" id="node03Note">Use Offset first. Normalize before styling.</div>
+            </article>
+
+            <article class="node">
+              <div class="node-top">
+                <div class="node-badge">Node 04</div>
+                <div class="node-kind">Grade</div>
+              </div>
+              <h4>White Balance</h4>
+              <p id="node04Purpose">Correct temperature and tint once exposure is in place.</p>
+              <div class="node-note" id="node04Note">Measure late, correct early.</div>
+            </article>
+
+            <article class="node">
+              <div class="node-top">
+                <div class="node-badge">Node 05</div>
+                <div class="node-kind">Grade</div>
+              </div>
+              <h4>Contrast</h4>
+              <p id="node05Purpose">Build tonal shape after technical balance.</p>
+              <div class="node-note" id="node05Note">Curves or HDR Wheels. Primaries are safe here.</div>
+            </article>
+
+            <article class="node">
+              <div class="node-top">
+                <div class="node-badge">Node 06</div>
+                <div class="node-kind">Grade</div>
+              </div>
+              <h4>Saturation</h4>
+              <p id="node06Purpose">Set global color intensity after tonal balance.</p>
+              <div class="node-note" id="node06Note">Keep separate from contrast for clarity.</div>
+            </article>
+
+            <article class="node">
+              <div class="node-top">
+                <div class="node-badge">Node 07</div>
+                <div class="node-kind">Grade</div>
+              </div>
+              <h4>Skin Tone</h4>
+              <p id="node07Purpose">Protect and refine faces independently.</p>
+              <div class="node-note" id="node07Note">Qualifier or HDR light-zone approach.</div>
+            </article>
+
+            <article class="node">
+              <div class="node-top">
+                <div class="node-badge">Node 08</div>
+                <div class="node-kind">Grade</div>
+              </div>
+              <h4>Secondaries</h4>
+              <p id="node08Purpose">Sky, foliage, wardrobe, products, local fixes.</p>
+              <div class="node-note" id="node08Note">Targeted selections, not broad rescue moves.</div>
+            </article>
+
+            <article class="node">
+              <div class="node-top">
+                <div class="node-badge">Node 09</div>
+                <div class="node-kind">Grade</div>
+              </div>
+              <h4>Look / Creative</h4>
+              <p id="node09Purpose">Apply the aesthetic finish once the shot already works.</p>
+              <div class="node-note" id="node09Note">This is for style, not technical repair.</div>
+            </article>
+
+            <article class="node">
+              <div class="node-top">
+                <div class="node-badge">Node 10</div>
+                <div class="node-kind">Grade</div>
+              </div>
+              <h4>Vignette</h4>
+              <p id="node10Purpose">Final compositional shaping and attention control.</p>
+              <div class="node-note" id="node10Note">Keep it subtle and nearly invisible.</div>
+            </article>
+          </div>
+        </div>
+
+        <div class="board-col">
+          <div class="group-head">
+            <h3>Post-Clip</h3>
+            <p id="postclipDesc">Output, limiting, and measurement.</p>
+          </div>
+
+          <article class="node emphasis">
+            <div class="node-top">
+              <div class="node-badge">Node 11</div>
+              <div class="node-kind">Output</div>
+            </div>
+            <h4 id="node11Title">Output CST</h4>
+            <p id="node11Purpose">Convert DWG / Intermediate to Rec.709 for delivery.</p>
+            <div class="node-note" id="node11Note">Tone Mapping: DaVinci. Max Input Nits: 1000.</div>
+          </article>
+
+          <article class="node">
+            <div class="node-top">
+              <div class="node-badge">Node 12</div>
+              <div class="node-kind">Output</div>
+            </div>
+            <h4>Broadcast Safe</h4>
+            <p id="node12Purpose">Legalize or soft-clip the final Rec.709 signal.</p>
+            <div class="node-note" id="node12Note">Must live after the Output CST.</div>
+          </article>
+
+          <article class="node">
+            <div class="node-top">
+              <div class="node-badge">Node 13</div>
+              <div class="node-kind">Measure</div>
+            </div>
+            <h4>MonoNodes Balance</h4>
+            <p id="node13Purpose">Final signal measurement only.</p>
+            <div class="node-note" id="node13Note">Read here, correct back on Node 04.</div>
+          </article>
+        </div>
+      </section>
+    </section>
+
+    <section id="rules" class="anchor-section reveal" data-trig>
+      <div class="eyebrow eyebrow-muted">Shared rules</div>
+      <h2>What stays the same in both workflows.</h2>
+
+      <div class="rules">
+        <div class="rule">
+          <h4>Same discipline</h4>
+          <p>Both workflows follow the same serial node logic and the same grading order.</p>
+        </div>
+
+        <div class="rule">
+          <h4>Same grading zone</h4>
+          <p>Do the creative work in the middle of the chain, not on the infrastructure nodes.</p>
+        </div>
+
+        <div class="rule">
+          <h4>Same output logic</h4>
+          <p>Both workflows end in Rec.709, so delivery stays consistent once the Output CST is correct.</p>
+        </div>
+
+        <div class="rule">
+          <h4>Same mindset</h4>
+          <p>Keep the structure clean: one operation per node, clear intent, no unnecessary transforms.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="legend">
+      <div class="legend-items">
+        <div class="legend-item"><span class="dot default"></span> Default path</div>
+        <div class="legend-item"><span class="dot alt"></span> Alternate path</div>
+        <div class="legend-item"><span class="dot dwg"></span> DWG</div>
+        <div class="legend-item"><span class="dot logc"></span> LogC4</div>
+      </div>
+      <div class="print-note">Full page · Trig.js reveal effects · separate HTML/CSS/JS</div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
