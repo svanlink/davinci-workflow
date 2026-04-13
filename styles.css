@@ -187,6 +187,7 @@ strong { color: var(--ink); font-weight: 600; }
 .compare-label { font-size: var(--meta); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--muted); }
 .compare-copy { font-size: 14px; color: var(--muted); line-height: 1.55; }
 .important-grid, .rules { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.strategy-grid { margin-top: 18px; }
 .important-card, .rule { min-height: 100%; padding: 18px; border-radius: var(--radius-sm); border: 1px solid var(--line); background: var(--surface); position: relative; }
 .important-card::before, .rule::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 1px; background: var(--card-top-line); }
 .important-card h4, .rule h4 { margin-bottom: 10px; }
@@ -228,6 +229,7 @@ strong { color: var(--ink); font-weight: 600; }
 .dot.default { background: var(--ink); }
 .dot.alt { background: transparent; border: 2px solid var(--line-strong); }
 .print-note { font-size: var(--meta); color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+.legend + .legend { margin-top: -10px; }
 .reveal {
   opacity: 0;
   transform: translateY(12px);
@@ -263,10 +265,11 @@ strong { color: var(--ink); font-weight: 600; }
 @media (max-width: 760px) {
   .page { padding: 14px 16px 64px; gap: 28px; }
   .hero-panel, .side-card, .workflow-panel, .settings, .compare, .important-card, .rule { padding: 20px; border-radius: 22px; }
+  .strategy-grid, .important-grid, .rules { grid-template-columns: 1fr; }
   .board { padding: 18px; border-radius: 24px; }
   .group-head, .node { padding: 16px; border-radius: 18px; }
   .hero-copy { font-size: 16px; }
-  .compare-row, .important-grid, .rules { grid-template-columns: 1fr; }
+  .compare-row { grid-template-columns: 1fr; }
   .clip-grid { grid-template-columns: 1fr; }
   .toggle-group { width: 100%; overflow-x: auto; }
   h1 { max-width: 100%; }

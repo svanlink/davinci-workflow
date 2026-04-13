@@ -17,8 +17,11 @@
 
       <div class="doc-nav-links">
         <a class="doc-nav-link active" data-tone="neutral" href="#overview">Overview</a>
+        <a class="doc-nav-link" data-tone="neutral" href="#strategy">Strategy</a>
         <a class="doc-nav-link" data-tone="dwg" href="#dwg">DWG</a>
         <a class="doc-nav-link" data-tone="logc" href="#logc4">LogC4</a>
+        <a class="doc-nav-link" data-tone="neutral" href="#delivery">Delivery</a>
+        <a class="doc-nav-link" data-tone="neutral" href="#tools">Tools</a>
         <a class="doc-nav-link" data-tone="neutral" href="#differences">Differences</a>
         <a class="doc-nav-link" data-tone="neutral" href="#consider">Consider</a>
         <a class="doc-nav-link" data-tone="neutral" href="#nodes">Nodes</a>
@@ -32,17 +35,17 @@
       <div class="hero-main">
         <div class="hero-panel">
           <div class="eyebrow">FX3 Color Management</div>
-          <h1>Two workflows. One clear decision.</h1>
+          <h1>Pick the workflow before you start grading.</h1>
           <p class="hero-copy">
-            A simple operational guide for grading Sony FX3 footage in DaVinci Resolve.
-            <strong>DWG Sandwich</strong> is the default path.
+            A reference hub for grading Sony FX3 footage in DaVinci Resolve.
+            <strong>DWG Sandwich</strong> is the default path for most delivery work.
             <strong>ARRI Clone / LogC4</strong> is the intentional alternate when you want the grade to live inside ARRI-style color science.
           </p>
 
           <div class="hero-tags">
-            <div class="tagline">Fast decision guide</div>
-            <div class="tagline">Premium documentation UI</div>
-            <div class="tagline">Scroll-enhanced</div>
+            <div class="tagline">Default: DWG</div>
+            <div class="tagline">Variant: LogC4</div>
+            <div class="tagline">Delivery aware</div>
           </div>
         </div>
       </div>
@@ -50,16 +53,43 @@
       <aside class="hero-side">
         <div class="side-card">
           <div class="eyebrow eyebrow-muted">At a glance</div>
-          <div class="side-number">A/B</div>
-          <p>Both workflows are valid. The difference is not complexity — it is color science, tool behavior, and intent.</p>
+          <div class="side-number">3</div>
+          <p>Three layers now shape the site: workflow choice, grading tools, and delivery standards.</p>
 
           <div class="side-list">
             <div>DWG is the safe default for most FX3 work.</div>
             <div>LogC4 is the specific choice for ARRI-style behavior.</div>
-            <div>The node discipline stays consistent across both.</div>
+            <div>Delivery settings matter as much as the grade itself.</div>
           </div>
         </div>
       </aside>
+    </section>
+
+    <section id="strategy" class="anchor-section reveal" data-trig>
+      <div class="eyebrow eyebrow-muted">Strategy selector</div>
+      <h2>Choose the path that matches the job.</h2>
+
+      <div class="rules strategy-grid">
+        <article class="rule">
+          <h4>DWG Sandwich</h4>
+          <p>Use for interviews, events, branded content, and any project that needs a dependable Resolve-native default.</p>
+        </article>
+
+        <article class="rule">
+          <h4>ARRI Clone / LogC4</h4>
+          <p>Use when the client wants a cinematic ARRI feel or when the FX3 must sit beside Alexa material.</p>
+        </article>
+
+        <article class="rule">
+          <h4>RCM / ACES</h4>
+          <p>Use when the project is camera-mixed or when the handoff needs a broader managed-color pipeline.</p>
+        </article>
+
+        <article class="rule">
+          <h4>Quick dailies</h4>
+          <p>Use a simple monitoring LUT or a fast preview path when the goal is speed, not final finishing.</p>
+        </article>
+      </div>
     </section>
 
     <section id="dwg" class="grid-14 workflow-shell dwg anchor-section reveal" data-trig>
@@ -166,6 +196,32 @@
       </aside>
     </section>
 
+    <section id="delivery" class="anchor-section reveal" data-trig>
+      <div class="eyebrow eyebrow-muted">Delivery standards</div>
+      <h2>Finish for the destination, not just the timeline.</h2>
+      <div class="important-grid">
+        <article class="important-card">
+          <h4>Rec.709</h4>
+          <p>Use for web, streaming, and broadcast SDR. Match gamma 2.4 or BT.1886 to the spec.</p>
+        </article>
+
+        <article class="important-card">
+          <h4>Rec.2100 PQ / HLG</h4>
+          <p>Use for HDR mastering and platform-specific HDR delivery. Set output nits to the mastering target.</p>
+        </article>
+
+        <article class="important-card">
+          <h4>Data levels</h4>
+          <p>Set full or video levels explicitly. Do not rely on auto if the deliverable must be predictable.</p>
+        </article>
+
+        <article class="important-card">
+          <h4>DCP</h4>
+          <p>Use JPEG2000 in the DCI container when the deliverable is theatrical or festival projection.</p>
+        </article>
+      </div>
+    </section>
+
     <section id="differences" class="grid-14 compare section-card anchor-section reveal" data-trig>
       <div class="compare-a">
         <div class="eyebrow eyebrow-muted">Key differences</div>
@@ -220,7 +276,7 @@
 
     <section id="consider" class="anchor-section reveal" data-trig>
       <div class="eyebrow eyebrow-muted">Important to consider</div>
-      <h2>Keep these rules simple and strict.</h2>
+      <h2>Keep the rules simple and strict.</h2>
 
       <div class="important-grid">
         <article class="important-card">
@@ -242,6 +298,34 @@
           <h4>Measure late, correct early</h4>
           <p>Broadcast Safe and measurement happen after the Output CST. Read late, but make corrections earlier in the chain.</p>
         </article>
+
+        <article class="important-card">
+          <h4>Pick the right tool</h4>
+          <p>Use HDR Wheels for LogC4 tonal work, Offset for broad exposure moves, and qualifiers or windows for secondaries.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="tools" class="anchor-section reveal" data-trig>
+      <div class="eyebrow eyebrow-muted">Tool selection</div>
+      <h2>Use the right palette for the move you need.</h2>
+      <div class="rules">
+        <article class="rule">
+          <h4>Offset</h4>
+          <p>Use for broad exposure recovery. It moves the whole signal without reshaping the relationship between black and white.</p>
+        </article>
+        <article class="rule">
+          <h4>HDR Wheels</h4>
+          <p>Use for wide-latitude tonal shaping, and treat them as required when you are grading in LogC4.</p>
+        </article>
+        <article class="rule">
+          <h4>Qualifiers</h4>
+          <p>Use for controlled secondary isolation once the image is balanced and the look is established.</p>
+        </article>
+        <article class="rule">
+          <h4>Power Windows</h4>
+          <p>Use to contain a secondary correction or guide attention with a shape, track, or vignette.</p>
+        </article>
       </div>
     </section>
 
@@ -250,7 +334,7 @@
       <h2>One structure. Two workflow states.</h2>
       <p class="workflow-summary" style="max-width: 60ch; margin-bottom: 20px;">
         The architecture stays the same. Switch between <strong>DWG Sandwich</strong> and
-        <strong>ARRI Clone / LogC4</strong> to see what changes in the node board.
+        <strong>ARRI Clone / LogC4</strong> to see what changes in the node board and output notes.
       </p>
 
       <div class="toolbar">
@@ -419,6 +503,15 @@
           </article>
         </div>
       </section>
+
+      <div class="legend">
+        <div class="legend-items">
+          <div class="legend-item"><span class="dot dwg"></span> DWG default</div>
+          <div class="legend-item"><span class="dot logc"></span> LogC4 alternate</div>
+          <div class="legend-item"><span class="dot default"></span> Shared node order</div>
+        </div>
+        <div class="print-note">Node 01 and Node 11 change; the grading order stays fixed.</div>
+      </div>
     </section>
 
     <section id="rules" class="anchor-section reveal" data-trig>
@@ -444,6 +537,11 @@
         <div class="rule">
           <h4>Same mindset</h4>
           <p>Keep the structure clean: one operation per node, clear intent, no unnecessary transforms.</p>
+        </div>
+
+        <div class="rule">
+          <h4>Deliver to spec</h4>
+          <p>Match the output color space and data levels to the platform. The grade is only finished when delivery matches the target.</p>
         </div>
       </div>
     </section>
