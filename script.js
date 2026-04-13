@@ -101,11 +101,14 @@ const board = document.getElementById("board");
 const workflowButtons = document.querySelectorAll("[data-workflow]");
 const themeButtons = document.querySelectorAll("[data-theme-target]");
 const navLinks = Array.from(document.querySelectorAll(".doc-nav-link"));
+const revealSections = Array.from(document.querySelectorAll(".reveal"));
 
 function updateWorkflow(workflow) {
   const data = workflowData[workflow];
   board.classList.remove("dwg", "logc");
   board.classList.add(workflow);
+  board.classList.add("board-flash");
+  window.setTimeout(() => board.classList.remove("board-flash"), 420);
 
   Object.entries(data).forEach(([id, value]) => {
     const el = document.getElementById(id);
@@ -137,6 +140,10 @@ workflowButtons.forEach((btn) => {
 
 themeButtons.forEach((btn) => {
   btn.addEventListener("click", () => updateTheme(btn.dataset.themeTarget));
+});
+
+revealSections.forEach((section, index) => {
+  section.style.setProperty("--reveal-delay", String(index * 90));
 });
 
 function setActiveLink(id) {
@@ -184,3 +191,7 @@ const savedTheme = localStorage.getItem("fx3-theme") || "dark";
 updateWorkflow(savedWorkflow);
 updateTheme(savedTheme);
 setActiveLink(activeSection);
+
+window.requestAnimationFrame(() => {
+  document.body.classList.add("page-ready");
+});
